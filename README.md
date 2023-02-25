@@ -71,7 +71,7 @@ After you're finished please remove all the comments and instructions!
 
 ### Tech Stack <a name="tech-stack"></a>
 
-> [React-Redux](https://guides.rubyonrails.org/) (React Redux is the official React UI bindings layer for Redux. It lets your React components read data from a Redux store, and dispatch actions to the store to update state.
+> [React-Redux](https://react-redux.js.org/) (React Redux is the official React UI bindings layer for Redux. It lets your React components read data from a Redux store, and dispatch actions to the store to update state.
 
 <details>
   <summary>Client</summary>
@@ -83,14 +83,16 @@ After you're finished please remove all the comments and instructions!
 <details>
   <summary>Server</summary>
   <ul>
-    <li><a href="https://guides.rubyonrails.org/">Ruby on Rails</a></li>
+    <!-- node.js -->
+    <li><a href="https://nodejs.org/en/">Node.js</a></li>
   </ul>
 </details>
 
 <details>
 <summary>Database</summary>
   <ul>
-    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
+    <!-- mongoDB -->
+    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
   </ul>
 </details>
 
@@ -114,22 +116,7 @@ After you're finished please remove all the comments and instructions!
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://deploy-preview-31--rentbikes.netlify.app)
-
-## Back-end Repository <a name="backend-repo"></a>
-
-  [Backend Repo](https://github.com/DuaneDave/Bike-rental-api)
-
-## Kanban Board <a name="kanban-board"></a>
-
-  [Initial Kanbam Board link](https://user-images.githubusercontent.com/99597333/210737236-a5ccadaa-cae1-428d-af5d-70577c1b3620.png)
-
-The collaborators to this project  are;
-
-- [@DuaneDave](https://github.com/DuaneDave)
-- [@Haadiiii](https://github.com/Haadiiii)
-- [@ChaabaneAnas](https://github.com/ChaabaneAnas/)
-- [@principlebrothers](https://github.com/principlebrothers)
+- [Live Demo Link]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -151,7 +138,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd my-folder
-  git clone https://github.com/DuaneDave/Bike-rental.git
+  git clone https://github.com/DuaneDave/Bike-rental-Node.js.git
 ```
 
 ### Install
@@ -159,7 +146,7 @@ Clone this repository to your desired folder:
 Install this project with:
 
 ```sh
-  cd Bike-rental
+  cd Bike-rental-Node.js
 
   npm install
 ```
@@ -192,34 +179,13 @@ Example:
 
 <!-- AUTHORS -->
 
-## 👥 Authors <a name="authors"></a>
-
-👤 **Ernest Anyewe Adonu**
-
-- GitHub: [@principlebrothers](https://github.com/principlebrothers)
-- Twitter: [@adonu_ernest](https://twitter.com/adonu_ernest)
-- LinkedIn: [Ernest Anyewe Adonu](www.linkedin.com/in/ernest-anyewe-adonu)
-
+## 👥 Author <a name="authors"></a>
 
 👤 **Haamid Ali**
 
 - GitHub: [@Haadiiii](https://github.com/Haadiiii)
 - Twitter: [@HaaDiii_99](https://twitter.com/HaaDiii_99)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/hamid-ali-01a872213/)
-
-
-👤 **Obiebi David**
-
-- GitHub: [@githubhandle](https://github.com/DuaneDave)
-- Twitter: [@twitterhandle](https://twitter.com/dave_duane)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/david-obiebi)
-
-
-👤 **Anas Chabaane**
-
-- GitHub: [@githubhandle](https://github.com/ChaabaneAnas/)
-- Twitter: [@twitterhandle](https://twitter.com/AnasChabaane)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/chaabaneanas/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -238,7 +204,7 @@ Example:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/DuaneDave/Bike-rental/issues/new)).
+Feel free to check the [issues page](https://github.com/Haadiiii/Bike-rental-Node.js/issues/new)).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
