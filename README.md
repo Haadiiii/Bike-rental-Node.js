@@ -65,7 +65,7 @@ After you're finished please remove all the comments and instructions!
 
 # 📖 Trek Bike Rental <a name="about-project"></a>
 
-**Trek Bike Rental** is a rental web app designed to allow users rent a bike from Trek rental company.
+**Trek Bike Rental** is a web application that allows users to rent bikes from a bike rental shop. The application is built with React-Redux and Node.js. The application is deployed on Heroku and the database is hosted on MongoDB Atlas.
 
 ## 🛠 Built With <a name="built-with"></a>
 
