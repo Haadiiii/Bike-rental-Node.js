@@ -47,7 +47,7 @@ function BikeList() {
         {isLoading && <Spiner />}
         {isSuccess &&
           Bikes.map((bike) => (
-            <SwiperSlide className={styles.sliderItem} key={bike.id}>
+            <SwiperSlide className={styles.sliderItem} key={bike._id}>
               <span className="flex flex-column center gap">
                 <img
                   style={{ cursor: "pointer" }}

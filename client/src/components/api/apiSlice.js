@@ -25,21 +25,43 @@ export const apiSlice = createApi({
       providesTags: ['Bike'],
     }),
     getUsers: builder.query({
-      Promise: () => fetch('/api/users', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then((res) => res.json()
-          ),
       query: () => '/api/users',
+      async queryFn(arg, { getState }) {
+        const { auth: { token } } = getState();
+        const response = await fetch('/api/users', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        return response.json();
+      },
       providesTags: ['User'],
 
     }),
-    // getReservations: builder.query({
-    //   query: () => '/reservations',
-    //   providesTags: ['Reservation'],
-    // }),
+    login: builder.mutation({
+      mutation: (credentials) => ({
+        url: '/api/login',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      }),
+      async onQueryStarted(arg, { dispatch }) {
+        try {
+          const result = await dispatch(fetchBaseQuery({ ...arg, baseQuery: fetch }))
+          const { token } = result.data;
+          dispatch(authActions.setToken(token)); // save token to Redux store
+        } catch (err) {
+          console.error(err);
+        }
+      },
+    }),
+    getReservations: builder.query({
+      query: () => '/api/reservation',
+      providesTags: ['Reservation'],
+    }),
     addBike: builder.mutation({
       Promise: (bike) => fetch('/api/bike', {
         method: 'POST',
@@ -84,14 +106,14 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['User'],
     }),
-    // addNewReservation: builder.mutation({
-    //   query: (body) => ({
-    //     url: '/reservations',
-    //     method: 'POST',
-    //     body,
-    //   }),
-    //   invalidatesTags: ['Reservation'],
-    // }),
+    addNewReservation: builder.mutation({
+      query: (body) => ({
+        url:  '/api/reservation',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Reservation'],
+    }),
     // deleteReservation: builder.mutation({
     //   query: (id) => ({
     //     url: `reservations${id}`,
@@ -104,11 +126,12 @@ export const apiSlice = createApi({
 
 export const {
   useGetBikesQuery,
-  // useGetReservationsQuery,
+  useGetReservationsQuery,
   useAddBikeMutation,
   useDeleteBikeMutation,
   useGetUsersQuery,
+  useLoginMutation,
   useAddUserMutation,
-  // useAddNewReservationMutation,
+  useAddNewReservationMutation,
   // useDeleteReservationMutation,
 } = apiSlice;

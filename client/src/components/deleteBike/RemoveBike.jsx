@@ -34,7 +34,7 @@ function RemoveBike({ data, onRequest }) {
       <div className={styles.deleteBikeContainer + " flex flex-column center"}>
         <div className='grid gap'>
           {data.map((bike) => (
-            <div key={bike.id}>
+            <div key={bike._id}>
               <img src={bike.images[Object.keys(bike.images)[0]]}></img>
               <div className={styles.actions + ' flex'}>
                 <h2>

@@ -1,5 +1,5 @@
 import styles from "./ReservationCard.module.css";
-// import { useGetReservationsQuery } from "../api/apiSlice";
+import { useGetReservationsQuery, useGetBikesQuery } from "../api/apiSlice";
 import Spiner from "../../reusables/spiner/Spinner";
 
 function ReservationCard() {
@@ -9,6 +9,9 @@ function ReservationCard() {
     isSuccess,
     isFetching,
   } = useGetReservationsQuery();
+
+  const { data: bikes } = useGetBikesQuery();
+
   return (
     <>
       {isLoading && <Spiner />}
@@ -17,24 +20,23 @@ function ReservationCard() {
         <section className={styles.wrapper + " flex flex-column center"}>
           <div className={styles.cardContainer + " grid gap"}>
             {reservations.map((reservation) => {
+              const bike = bikes?.find( (bike) => bike._id === reservation.bike && {}) 
               return (
                 <div
                   className={styles.card + " flex flex-column gap"}
-                  key={reservation.id}
+                  key={reservation._id}
                 >
-                  <img
-                    src={
-                      reservation.bike.images[
-                        Object.keys(reservation.bike.images)[0]
-                      ]
-                    }
-                  />
+                   {/* img */}
+                    <img
+                      src={bike?.images[Object.keys(bike.images)[0]]}
+                      alt={bike?.name}
+                    />
                   <div className={styles.cardDetails + " flex flex-column"}>
                     <h3 className="flex">
                       Bike Name:
                       <span>
-                        {reservation.bike.name}
-                        {reservation.bike.brand}
+                        {bike?.name}
+                        {bike?.brand}
                       </span>
                     </h3>
                     <span>

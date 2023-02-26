@@ -2,8 +2,9 @@ import { useState } from "react";
 import UseChange from "../hooks/UseChange";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
-  // useAddNewReservationMutation,
+  useAddNewReservationMutation,
   useGetBikesQuery,
+  useGetUsersQuery
 } from "../components/api/apiSlice";
 
 import sessionStorage from "../helpers/sessions";
@@ -26,12 +27,13 @@ function Reservations() {
 
   const [addNewReservation, { isLoading }] = useAddNewReservationMutation();
   const { data: bikes } = useGetBikesQuery();
+  const { data: users } = useGetUsersQuery();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const selectedBike = bikes.find(
-      (each) => each.id === Number(bike.split(".")[0] || location.state.id)
+      (each) =>  each.name + each.brand === bike
     );
 
     const userData = sessionStorage("get");
@@ -39,10 +41,11 @@ function Reservations() {
     const data = {
       reservation_date: reservationDate,
       due_date: dueDate,
-      bike_id: selectedBike.id,
-      user_id: userData.id,
+      bike: selectedBike,
+      user: userData,
       city,
     };
+    console.log(data)
 
     addNewReservation(data)
       .unwrap()
@@ -52,12 +55,12 @@ function Reservations() {
           message: `Yay! Your reservation for ${selectedBike.name} has been added successfully`,
           type: "success",
         });
-        navigate("/reservations");
+        navigate(`/reservations`);
       })
       .catch(() =>
         setModal({
           alert: true,
-          message: `Oops! Something went wrong with reseving ${selectedBike.name}, please try again`,
+          message: `Oops! Something went wrong with reseving, please try again`,
           type: "error",
         })
       );
@@ -90,8 +93,8 @@ function Reservations() {
               payload={location.state}
             >
               {bikes?.map((bike) => (
-                <option key={bike.id}>
-                  {bike.id}.{bike.name}
+                <option key={bike._id}>
+                  {bike.name}
                   {bike.brand}
                 </option>
               ))}

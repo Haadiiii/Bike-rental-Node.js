@@ -18,7 +18,7 @@ app.use(cors());
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/bike', require('./routes/api/bike'));
-
+app.use('/api/reservation', require('./routes/api/reservation'));
 
 
 const PORT = process.env.PORT || 5000;

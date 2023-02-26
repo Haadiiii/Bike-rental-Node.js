@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useGetUsersQuery } from '../components/api/apiSlice';
+import { useGetUsersQuery, useLoginMutation } from '../components/api/apiSlice';
 import UseChange from '../hooks/UseChange';
 
 import sessionStorage from '../helpers/sessions';
@@ -16,7 +16,8 @@ function LogIn() {
   const [password, handlePasswordChange] = UseChange('');
 
   const navigate = useNavigate();
-  const { data: users } = useGetUsersQuery();
+  const { data: users } = useGetUsersQuery(undefined, { skipToken: false });
+  const [login, { isLoading }] = useLoginMutation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +46,8 @@ function LogIn() {
         });
         return;
       } else {
-          sessionStorage('set', users);
+        const token = login({ username, email, password }, { skipToken: false });
+          sessionStorage('set', token);
         const userSec = sessionStorage('get');
         if (userSec) {
           navigate('/home');
