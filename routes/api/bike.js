@@ -10,7 +10,7 @@ const auth = require('../../middleware/auth');
 // @desc    Create a bike
 // @access  Private
 
-router.post('/', [auth, [
+router.post('/', [
     check('name', 'Name is required').not().isEmpty(),
     check('bike_type', 'Bike type is required').not().isEmpty(),
     check('description', 'Description is required').not().isEmpty(),
@@ -18,7 +18,7 @@ router.post('/', [auth, [
     check('daily_rate', 'Daily rate is required').not().isEmpty(),
     check('color', 'Color is required').not().isEmpty(),
     check('images', 'Images are required').not().isEmpty()
-]], async (req, res) => {
+], async (req, res) => {
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -97,7 +97,7 @@ router.get('/:id', async (req, res) => {
 // @desc    Delete a bike
 // @access  Private
 
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const bike = await Bike.findById(req.params.id);
 
@@ -106,9 +106,9 @@ router.delete('/:id', auth, async (req, res) => {
         }
 
         // Check user
-        if (bike.user === req.user.id) {
-            return res.status(401).json({ msg: 'User not authorized' });
-        }
+        // if (bike.user === req.user.id) {
+        //     return res.status(401).json({ msg: 'User not authorized' });
+        // }
 
         await bike.remove();
 

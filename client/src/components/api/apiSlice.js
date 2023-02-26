@@ -114,13 +114,13 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Reservation'],
     }),
-    // deleteReservation: builder.mutation({
-    //   query: (id) => ({
-    //     url: `reservations${id}`,
-    //     medthod: 'DELETE',
-    //   }),
-    //   invalidatesTags: ['Reservation'],
-    // }),
+    deleteReservation: builder.mutation({
+      query: (id) => ({
+        url: `/api/reservation/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Reservation'],
+    }),
   }),
 });
 
@@ -133,5 +133,5 @@ export const {
   useLoginMutation,
   useAddUserMutation,
   useAddNewReservationMutation,
-  // useDeleteReservationMutation,
+  useDeleteReservationMutation,
 } = apiSlice;

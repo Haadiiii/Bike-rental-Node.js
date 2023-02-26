@@ -2,16 +2,12 @@ import ColorSwitch from "../colorSwitch/ColorSwitch";
 import { useState } from "react";
 import Size from "./Size/Size";
 import { Link, useNavigate } from "react-router-dom";
-
 import styles from "./Bike.module.css";
-import Button from "../../reusables/button/Button";
 
 function Bike({ bike }) {
   const [color, setColor] = useState(null);
   const changeColor = (input) => setColor(input);
   const navigate = useNavigate();
-
-  console.log(bike)
 
   return (
     <section className={styles.detailsContainer + " flex center"}>
@@ -59,7 +55,7 @@ function Bike({ bike }) {
           <Link
             className={styles.res}
             to="/reserve"
-            state={{ id: bike.id, name: bike.name, brand: bike.brand }}
+            state={{ id: bike._id, name: bike.name, brand: bike.brand }}
           >
             Reserve
           </Link>

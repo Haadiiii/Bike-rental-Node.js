@@ -1,8 +1,12 @@
 import styles from "./ReservationCard.module.css";
-import { useGetReservationsQuery, useGetBikesQuery } from "../api/apiSlice";
+import { useGetReservationsQuery, useGetBikesQuery, useDeleteReservationMutation } from "../api/apiSlice";
 import Spiner from "../../reusables/spiner/Spinner";
+import Modal from "../../reusables/notifications/modal/Modal";
+import { useState } from "react";
 
 function ReservationCard() {
+  const [modal, setModal] = useState({ isError: false, message: '', type: '' });
+
   const {
     data: reservations,
     isLoading,
@@ -11,6 +15,25 @@ function ReservationCard() {
   } = useGetReservationsQuery();
 
   const { data: bikes } = useGetBikesQuery();
+
+  const [deleteReservation] = useDeleteReservationMutation();
+
+  const handleCancelReservation = (reservationId) => {
+    if(isSuccess){
+      deleteReservation(reservationId)
+       setModal({
+        isError: true,
+        message: "Reservation deleted successfully",
+        type: "success",
+      });
+    } else {
+      setModal({
+        isError: true,
+        message: "Something went wrong",
+        type: "error",
+      });
+    }
+  };
 
   return (
     <>
@@ -52,12 +75,25 @@ function ReservationCard() {
                       <span>{reservation.city}</span>
                     </span>
                   </div>
-
                   <span></span>
+                  {/* cancel reservation */}
+
+                  <button
+                    onClick={() => handleCancelReservation(reservation._id)}
+                  >
+                    Cancel Reservation
+                  </button>
                 </div>
               );
             })}
           </div>
+          {modal.isError && (
+        <Modal
+          message={modal.message}
+          type={modal.type}
+          onClose={() => setModal({ isError: false, message: '', type: '' })}
+        />
+      )}
         </section>
       )}
     </>

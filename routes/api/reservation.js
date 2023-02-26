@@ -88,7 +88,7 @@ router.get('/:id', async (req, res) => {
 // @desc    Delete a reservation
 // @access  Private
 
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const reservation = await Reservation.findById(req.params.id);
 
