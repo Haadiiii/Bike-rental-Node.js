@@ -9,11 +9,12 @@ const app = express();
 connectDB();
 
 app.use(express.json({ extended: false }));
-app.get(express.static('client/build'));
+app.get(express.static('client/src'));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'client', 'src', 'index.html'));
 });
+
 
 
 app.get('/', (req, res) => res.send('API Running'));
