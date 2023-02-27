@@ -97,7 +97,7 @@ router.get('/:id', async (req, res) => {
 // @desc    Delete a bike
 // @access  Private
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     try {
         const bike = await Bike.findById(req.params.id);
 
@@ -106,9 +106,9 @@ router.delete('/:id', async (req, res) => {
         }
 
         // Check user
-        // if (bike.user === req.user.id) {
-        //     return res.status(401).json({ msg: 'User not authorized' });
-        // }
+        if (bike.user === req.user.id) {
+            return res.status(401).json({ msg: 'User not authorized' });
+        }
 
         await bike.remove();
 

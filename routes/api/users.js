@@ -59,6 +59,7 @@ router.post('/', [
                 if (err) throw err;
                 res.json({ token });
             })
+
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
@@ -72,6 +73,8 @@ router.post('/', [
 router.get('/', async (req, res) => {
     try {
         const users = await User.find();
+
+
         res.json(users);
     } catch (err) {
         console.error(err.message);

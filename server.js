@@ -8,6 +8,7 @@ const app = express();
 connectDB();
 
 app.use(express.json({ extended: false }));
+app.use(express.static('client'));
 
 app.get('/', (req, res) => res.send('API Running'));
 
