@@ -9,11 +9,6 @@ const app = express();
 connectDB();
 
 app.use(express.json({ extended: false }));
-
-app.get('/', (req, res) => res.send('API Running'));
-
-app.use(cors());
-
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 app.get('/', (req, res) => {
@@ -24,6 +19,10 @@ app.get('/main.jsx', (req, res) => {
   res.set('Content-Type', 'application/javascript');
   res.sendFile(path.join(__dirname, 'client', 'src', 'main.jsx'));
 });
+
+app.get('/', (req, res) => res.send('API Running'));
+
+app.use(cors());
 
 // Define Routes
 
