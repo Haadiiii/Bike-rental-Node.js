@@ -1,7 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/db');
-const path = require('path');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 
@@ -9,15 +9,6 @@ const app = express();
 connectDB();
 
 app.use(express.json({ extended: false }));
-app.get(express.static('client/src'));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'src', 'index.html'));
-});
-
-
-
-app.get('/', (req, res) => res.send('API Running'));
 
 app.use(cors());
 
@@ -27,6 +18,17 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/bike', require('./routes/api/bike'));
 app.use('/api/reservation', require('./routes/api/reservation'));
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+
+}
 
 
 const PORT = process.env.PORT || 5000;
