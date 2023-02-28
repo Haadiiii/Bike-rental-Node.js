@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/trek.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- because it violates the following Content Security Policy directive: "default-src 'none'" -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self';">
     <title>Trek</title>
   </head>
   <body>
