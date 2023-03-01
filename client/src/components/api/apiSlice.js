@@ -41,22 +41,13 @@ export const apiSlice = createApi({
     }),
     login: builder.mutation({
       mutation: (credentials) => ({
-        url: '/api/login',
+        url: '/api/auth',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(credentials),
       }),
-      async onQueryStarted(arg, { dispatch }) {
-        try {
-          const result = await dispatch(fetchBaseQuery({ ...arg, baseQuery: fetch }))
-          const { token } = result.data;
-          dispatch(authActions.setToken(token)); // save token to Redux store
-        } catch (err) {
-          console.error(err);
-        }
-      },
     }),
     getReservations: builder.query({
       query: () => '/api/reservation',

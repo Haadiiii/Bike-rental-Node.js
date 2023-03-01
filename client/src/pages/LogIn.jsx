@@ -46,7 +46,7 @@ function LogIn() {
         });
         return;
       } else {
-        const token = login({ username, email, password }, { skipToken: false });
+        const token = login({ username, email, password });
           sessionStorage('set', token);
         const userSec = sessionStorage('get');
         if (userSec) {
