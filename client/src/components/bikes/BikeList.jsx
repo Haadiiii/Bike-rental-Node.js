@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import classnames from "classnames";
 import "swiper/css";
 
+
 import styles from "./Bike.module.css";
 
 import Button from "../../reusables/button/Button";
